@@ -1,0 +1,9 @@
+node_modules/
+.DS_Store
+.env
+.env.*
+!.env.example
+.data-app-offline/
+.data-app-cache/
+.openai/
+*.log
