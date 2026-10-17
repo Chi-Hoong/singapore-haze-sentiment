@@ -1,11 +1,12 @@
 import React from 'react';
 import { DataComponent, EvidenceChart, Filters, MetricCard, Section, SortableRegion, SortableItem, Button, Dialog, useDataApp } from '../../data-app-public.jsx';
-import { summarize, dailyCounts, topicCounts, csvForRows } from './metrics.js';
+import { summarize, dailyCounts, topicCounts, scopeCounts, csvForRows } from './metrics.js';
 import './haze.css';
 
 const palette = { Negative: 'var(--negative)', Positive: 'var(--positive)', 'Neutral / mixed': 'var(--chart-8)' };
 const fields = ['Positive', 'Neutral / mixed', 'Negative'];
 const topicSpec = { type: 'horizontalStackedBar', x: 'theme', y: 'Positive', fields, colors: palette, showLegend: true, startAtZero: true, valueDecimals: 0 };
+const scopeSpec = { ...topicSpec, x: 'feedbackScope' };
 const dateSpec = { type: 'stackedBar', x: 'date', y: 'Positive', fields, colors: palette, showLegend: true, startAtZero: true, valueDecimals: 0 };
 const dateLabel = date => date ? new Date(`${date}T12:00:00Z`).toLocaleDateString('en-SG', {day:'numeric',month:'short',timeZone:'Asia/Singapore'}) : 'Date unavailable';
 const tone = sentiment => sentiment === 'Negative' ? 'negative' : sentiment === 'Positive' ? 'positive' : 'mixed';
@@ -25,7 +26,7 @@ function exportCsv(rows) {
 
 export function DashboardContent() {
   const { snapshot, queries, filters, setFilter, reviewedRows } = useDataApp();
-  const rows = reviewedRows('feedback', ['id','date','posted','channel','evidence','sentiment','theme','source','community','location']);
+  const rows = reviewedRows('feedback', ['id','date','posted','channel','evidence','sentiment','theme','source','community','location','feedbackScope']);
   const allRows = snapshot.queries.feedback.rows;
   const coverage = queries.coverage?.rows ?? [];
   const capturedSources = [...new Set(allRows.map(row=>row.source))];
@@ -33,6 +34,7 @@ export function DashboardContent() {
   const stats = summarize(rows);
   const platformCount = new Set(rows.map(row=>row.source)).size;
   const topics = topicCounts(rows);
+  const scopes = scopeCounts(rows);
   const daily = dailyCounts(rows);
   const dailySpec = {...dateSpec, yTickCount: Math.min(5, Math.max(2, 1+Math.max(0,...daily.map(row=>fields.reduce((sum,field)=>sum+row[field],0)))))};
   const datedRows = rows.filter(row=>row.date);
@@ -41,11 +43,13 @@ export function DashboardContent() {
   const context = queries.programme?.rows ?? [];
   const [search, setSearch] = React.useState('');
   const [showAll, setShowAll] = React.useState(false);
+  const [showAllReports, setShowAllReports] = React.useState(false);
+  const shownReports = showAllReports ? reports : reports.slice(0,6);
   const [showAllSources, setShowAllSources] = React.useState(false);
   const shownCoverage = showAllSources ? coverage : coverage.filter(row=>row.captured>0);
   const [detail,setDetail] = React.useState(null);
   const [methodOpen,setMethodOpen] = React.useState(false);
-  const filteredFeed = [...rows].filter(r=>[r.summary,r.theme,r.source,r.community,r.evidence,r.contentType].join(' ').toLowerCase().includes(search.toLowerCase())).sort((a,b)=>(b.date || '').localeCompare(a.date || '') || a.id.localeCompare(b.id));
+  const filteredFeed = [...rows].filter(r=>[r.summary,r.theme,r.source,r.community,r.evidence,r.contentType,r.feedbackScope].join(' ').toLowerCase().includes(search.toLowerCase())).sort((a,b)=>(b.date || '').localeCompare(a.date || '') || a.id.localeCompare(b.id));
   const shownFeed = showAll ? filteredFeed : filteredFeed.slice(0,6);
   const updated = new Date(snapshot.generatedAt).toLocaleString('en-SG',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'Asia/Singapore'});
   const actions = field => ({row}) => [{label:'View matching feedback',onSelect:()=>{setFilter(field,row[field]); document.getElementById('feedback-list')?.scrollIntoView({behavior:'smooth',block:'start'});}}];
@@ -55,7 +59,7 @@ export function DashboardContent() {
       <div><span className="haze-status-dot"/> Public web snapshot <span className="haze-separator">/</span> <span>Collected {updated} SGT</span></div>
       <a href="https://www.gowhere.gov.sg/hazemask" target="_blank" rel="noreferrer">Official mask locator ↗</a>
     </div>
-    <div className="haze-scope-note"><strong>Government N95 vending programme.</strong> Public forum and social-media feedback on the machines and wider collection rollout. AI-assisted labels; this search sample is not representative of Singapore residents. <button onClick={()=>setMethodOpen(true)}>Coverage & method</button></div>
+    <div className="haze-scope-note"><strong>Government haze-mask rollout.</strong> Vending-machine feedback is separated from wider discussion of eligibility, allocation and other collection channels. AI-assisted labels; this search sample is not representative of Singapore residents. <button onClick={()=>setMethodOpen(true)}>Coverage & method</button></div>
     <Filters sticky filters={snapshot.filters ?? []} queries={queries} values={filters} onChange={setFilter} />
     <SortableRegion id="haze:summary" variant="canvas" spacing="standard" rows={[{id:'haze:metrics',kind:'metrics',items:['mentions','negative-share','firsthand'] }]}>
       <SortableItem id="mentions" kind="metric" label="Collected mentions" span={4}>
@@ -69,20 +73,28 @@ export function DashboardContent() {
       </SortableItem>
     </SortableRegion>
 
-    <Section id="collection-experiences-heading" title="Collection experiences" spacing="after-metrics">
+    <Section id="feedback-scope-heading" title="Vending machines and the wider rollout" spacing="after-metrics">
+      <EvidenceChart id="feedback-scope" queryId="feedback" title="Sentiment by feedback focus" variant="card" spec={scopeSpec} rows={scopes} sourceRows={rows} height={190} chartOptions={{getMarkActions:actions('feedbackScope')}} description="Mutually exclusive groups. Machine-specific feedback includes explicit discussion of machine availability, location, interface or use. General eligibility, allocation, mask usability and other collection comments are wider rollout feedback. These are analyst labels, not verified incidents.">
+        <div className="haze-scope-totals" data-reviewed-rows>{scopes.map(group=><div key={group.feedbackScope}><strong>{group.feedbackScope}</strong><span>{group.total} mentions · {group.negativeShare == null ? 'no sentiment rate' : `${Math.round(group.negativeShare*100)}% negative`}</span></div>)}</div>
+        <p className="haze-chart-note">Each mention appears once. A machine-specific opinion is not necessarily a collection experience. Use Feedback focus to filter the whole analysis.</p>
+      </EvidenceChart>
+    </Section>
+
+    <Section id="collection-experiences-heading" title="Collection experiences" spacing="section">
       <DataComponent id="collection-reports" queryId="feedback" kind="table" title="Firsthand collection reports" variant="card" sourceRows={reports} displayRows={reports} description="Self-reported experiences, including the wider distribution programme. Community Club and unspecified-channel collections do not establish vending-machine success. No operational claim has been independently verified.">
-        {reports.length ? <div className="haze-report-grid" data-reviewed-rows>{reports.map(row=><article key={row.id} className="haze-report">
+        {reports.length ? <div className="haze-report-grid" data-reviewed-rows>{shownReports.map(row=><article key={row.id} className="haze-report">
           <div className="haze-report-top"><span className={`haze-pill ${tone(row.sentiment)}`}>{row.collectionChannel}</span><span>{dateLabel(row.date)} · {row.source}</span></div>
           <EvidenceText row={row}/>
           <div className="haze-report-foot"><span>{row.location === 'Not specified' ? 'Location not specified' : row.location} · unverified</span><SourceLink row={row}/></div>
         </article>)}</div> : <Empty>No firsthand reports in this selection. Adjust the evidence or topic filters to explore other feedback.</Empty>}
+        {reports.length>6 && <div className="haze-load-more"><Button onClick={()=>setShowAllReports(!showAllReports)}>{showAllReports?'Show fewer reports':`Show all ${reports.length} firsthand reports`}</Button></div>}
       </DataComponent>
     </Section>
 
     <Section id="discussion-patterns-heading" title="What the discussion is about" spacing="section">
       <SortableRegion id="haze:charts" variant="canvas" spacing="standard" rows={[{id:'haze:patterns',items:['topics','dates']}]}>
         <SortableItem id="topics" label="Sentiment by topic" kind="chart" span={7}>
-          <EvidenceChart id="topics" queryId="feedback" title="Sentiment by topic" variant="card" spec={topicSpec} rows={topics} sourceRows={rows} height={340} chartOptions={{getMarkActions:actions('theme')}} description="One primary topic per selected post or comment. Bars count mentions, not incidents."><p className="haze-chart-note">One primary topic per mention. Select a bar to inspect the feedback.</p></EvidenceChart>
+          <EvidenceChart id="topics" queryId="feedback" title="Sentiment by topic" variant="card" spec={topicSpec} rows={topics} sourceRows={rows} height={Math.max(340,topics.length*28)} chartOptions={{getMarkActions:actions('theme')}} description="One primary topic per selected post or comment. Bars count mentions, not incidents."><p className="haze-chart-note">One primary topic per mention. Select a bar to inspect the feedback.</p></EvidenceChart>
         </SortableItem>
         <SortableItem id="dates" label="Collected mentions by date" kind="chart" span={5}>
           <EvidenceChart id="dates" queryId="feedback" title="Collected mentions by date" variant="card" spec={dailySpec} rows={daily} sourceRows={datedRows} height={340} chartOptions={{getMarkActions:actions('date')}} description="Only mentions with a verified calendar date are plotted. Relative-only dates are excluded. Missing dates are not zero online activity; this is not an estimate of platform-wide discussion volume."><p className="haze-chart-note">{undatedCount ? `${undatedCount} mentions have no exact date and are excluded here. ` : ''}Search coverage varies by day; counts do not establish a public-opinion trend.</p></EvidenceChart>
@@ -97,7 +109,7 @@ export function DashboardContent() {
           <thead><tr><th>Source</th><th>Captured</th><th>Search outcome</th><th>Scope & limitations</th></tr></thead>
           <tbody>{shownCoverage.map(row=><tr key={row.platform}><th scope="row">{row.captured ? <button className="haze-platform-button" onClick={()=>setFilter('source',row.platform)} aria-label={`Filter to ${row.platform}`}>{row.platform} ↗</button> : row.platform}</th><td>{row.captured}</td><td><span className={`haze-coverage-status ${row.captured?'captured':''}`}>{row.status}</span></td><td>{row.detail}</td></tr>)}</tbody>
         </table></div>
-        <div className="haze-coverage-footer"><p className="haze-chart-note">{coverage.length-capturedSources.length} other sources searched; no eligible feedback verified. Search indexes and public access are incomplete. Zero captured does not mean no discussion.</p><Button onClick={()=>setShowAllSources(!showAllSources)}>{showAllSources?'Show contributing sources':`Show all ${coverage.length} searched sources`}</Button></div>
+        <div className="haze-coverage-footer"><p className="haze-chart-note">{coverage.length-capturedSources.length} other sources searched; no eligible feedback verified. Search indexes and public access are incomplete. Zero captured does not mean no discussion. <a className="haze-source-link" href="https://github.com/Chi-Hoong/singapore-haze-sentiment/blob/main/SEARCH_COVERAGE.md" target="_blank" rel="noreferrer">Read the search log ↗</a></p><Button onClick={()=>setShowAllSources(!showAllSources)}>{showAllSources?'Show contributing sources':`Show all ${coverage.length} searched sources`}</Button></div>
       </DataComponent>
     </Section>
 
@@ -106,7 +118,7 @@ export function DashboardContent() {
         <DataComponent id="feedback-records" queryId="feedback" title="Source-linked feedback" kind="table" variant="card" className="haze-feedback-card" sourceRows={filteredFeed} displayRows={filteredFeed} scopeFilters={search?[{label:'Feedback text search',value:search}]:[]} headerControls={<div className="haze-feed-controls"><input type="search" aria-label="Search feedback text" placeholder="Search these comments…" value={search} onChange={e=>{setSearch(e.target.value);setShowAll(false);}}/><Button disabled={!filteredFeed.length} onClick={()=>exportCsv(filteredFeed)}>Export CSV</Button></div>}>
           <div className="haze-feed-count" role="status">{filteredFeed.length} posts and comments in this list · labels describe sentiment toward the programme</div>
           <div className="haze-feed" data-reviewed-rows>{shownFeed.length ? shownFeed.map(row=><article className="haze-feed-row" key={row.id}>
-            <div className="haze-feed-meta"><span className={`haze-pill ${tone(row.sentiment)}`}>{row.sentiment}</span><time dateTime={row.date || undefined}>{dateLabel(row.date)}</time><span>{row.community}</span><span>{row.contentType}</span><span className="haze-type-label">{row.evidence}</span></div>
+            <div className="haze-feed-meta"><span className={`haze-pill ${tone(row.sentiment)}`}>{row.sentiment}</span><span className="haze-scope-tag">{row.feedbackScope}</span><time dateTime={row.date || undefined}>{dateLabel(row.date)}</time><span>{row.community}</span><span>{row.contentType}</span><span className="haze-type-label">{row.evidence}</span></div>
             <EvidenceText row={row}/>
             <div className="haze-feed-foot"><div><span className="haze-topic-tag">{row.theme}</span><span className="haze-text-type">{row.textType}</span></div><div><button className="haze-detail-button" onClick={()=>setDetail(row)}>Review label</button><SourceLink row={row}/></div></div>
           </article>) : <Empty>No feedback matches this search. Clear the text or reset the page filters.</Empty>}</div>
@@ -123,7 +135,7 @@ export function DashboardContent() {
     <footer className="haze-footer">Public comments are claims and opinions. Machine-level stock, outages and successful collections are not measured here. <button onClick={()=>setMethodOpen(true)}>View coverage</button></footer>
 
     <Dialog open={Boolean(detail)} title="Review feedback classification" onClose={()=>setDetail(null)} className="haze-dialog">
-      {detail && <div><div className="haze-detail-meta"><span className={`haze-pill ${tone(detail.sentiment)}`}>{detail.sentiment}</span><span>{dateLabel(detail.date)} · {detail.community}</span></div><EvidenceText row={detail}/><dl><dt>Primary topic</dt><dd>{detail.theme}</dd><dt>Evidence type</dt><dd>{detail.evidence} · {detail.contentType}</dd><dt>Collection channel</dt><dd>{detail.collectionChannel}</dd><dt>Location</dt><dd>{detail.location}{detail.locationContext && detail.locationContext !=='Not specified' ? `; ${detail.locationContext}, not a verified machine location` : ''}</dd><dt>Classification</dt><dd>AI-assisted interpretation. Sarcasm, context and ambiguous wording can affect labels.</dd><dt>Evidence note</dt><dd>{detail.note || 'Programme reaction, not a verified operational incident.'}</dd><dt>Text & date</dt><dd>{detail.textType}. {detail.dateBasis}{detail.publishedAt ? ` (${detail.publishedAt})` : ''}</dd>{detail.retrievedAt && <><dt>Retrieved</dt><dd>{detail.retrievedAt}</dd></>}{detail.provenance && <><dt>Source review</dt><dd>{detail.provenance}</dd></>}</dl><div className="haze-dialog-links"><SourceLink row={detail}/>{detail.url !== detail.threadUrl && <a href={detail.threadUrl} target="_blank" rel="noreferrer">Open full discussion ↗</a>}</div></div>}
+      {detail && <div><div className="haze-detail-meta"><span className={`haze-pill ${tone(detail.sentiment)}`}>{detail.sentiment}</span><span>{dateLabel(detail.date)} · {detail.community}</span></div><EvidenceText row={detail}/><dl><dt>Feedback focus</dt><dd>{detail.feedbackScope}. {detail.scopeBasis}</dd><dt>Primary topic</dt><dd>{detail.theme}</dd><dt>Evidence type</dt><dd>{detail.evidence} · {detail.contentType}</dd><dt>Collection channel</dt><dd>{detail.collectionChannel}</dd><dt>Location</dt><dd>{detail.location}{detail.locationContext && detail.locationContext !=='Not specified' ? `; ${detail.locationContext}, not a verified machine location` : ''}</dd><dt>Classification</dt><dd>AI-assisted interpretation. Sarcasm, context and ambiguous wording can affect labels.</dd><dt>Evidence note</dt><dd>{detail.note || 'Programme reaction, not a verified operational incident.'}</dd><dt>Text & date</dt><dd>{detail.textType}. {detail.dateBasis}{detail.publishedAt ? ` (${detail.publishedAt})` : ''}</dd>{detail.retrievedAt && <><dt>Retrieved</dt><dd>{detail.retrievedAt}</dd></>}{detail.provenance && <><dt>Source review</dt><dd>{detail.provenance}</dd></>}</dl><div className="haze-dialog-links"><SourceLink row={detail}/>{detail.url !== detail.threadUrl && <a href={detail.threadUrl} target="_blank" rel="noreferrer">Open full discussion ↗</a>}</div></div>}
     </Dialog>
     <Dialog open={methodOpen} title="Coverage & method" onClose={()=>setMethodOpen(false)} className="haze-dialog">
       <p><strong>Scope:</strong> Singapore’s government N95 mask vending rollout for the October 2026 haze, including eligibility and wider collection-policy discussion. Community Club experiences are identified separately. COVID-era programmes, general haze discussion and unrelated political comments are excluded.</p>
@@ -131,7 +143,8 @@ export function DashboardContent() {
       <p><strong>Refresh:</strong> This dashboard contains a fetched snapshot. No continuous platform API is connected. Reddit’s unauthenticated endpoint returned HTTP 403; some social pages could not be read. The dashboard’s refresh action requests a new source review through Codex.</p>
       <p><strong>Classification:</strong> AI-assisted labels describe sentiment toward the programme. Neutral / mixed includes questions, caveats and conditional opinions. Each post or comment gets one primary topic. Votes are not weights; mentions are not unique people. Official announcements and news captions are excluded from sentiment; their public replies can qualify.</p>
       <p><strong>Rates & dates:</strong> Negative share = negative mentions ÷ all selected mentions. Empty selections show no rate. Relative-only social dates stay uncertain and do not enter the daily chart. Firsthand reports require a stated personal collection attempt; replies about an incident are not additional incidents.</p>
-      <p><strong>Locations & channels:</strong> The firsthand reports do not identify a specific machine location. A CC collection or an unspecified collection channel is not evidence of vending-machine performance. No location rankings, availability estimates or operational failure rates can be derived from these records.</p>
+      <p><strong>Feedback focus:</strong> Explicit machine availability, location, interface and use comments are grouped as Vending machines. Eligibility, quantity, mask usability and non-machine collection discussion are Wider rollout unless the comment explicitly ties them to a machine. A mixed-scope post with an explicit machine claim is counted once in Vending machines. The parent thread alone does not determine scope.</p>
+      <p><strong>Locations & channels:</strong> Places are self-reported and not independently verified. A CC collection or an unspecified collection channel is not evidence of vending-machine performance. No location rankings, availability estimates or operational failure rates can be derived from these records.</p>
       <p>Open a component’s source menu for the underlying rows and provenance. CSV export includes the current feedback list and its links.</p>
     </Dialog>
   </div>;

@@ -10,6 +10,10 @@
 .haze-scope-note button,.haze-footer button,.haze-detail-button { background:none; border:0; padding:0; font:inherit; color:var(--accent); cursor:pointer; text-decoration:underline; text-underline-offset:3px; }
 .haze-page>.filters { margin-bottom:18px; }
 .haze-metric-note { color:var(--secondary); font-size:12px; line-height:1.6; margin-top:14px; display:flex; align-items:center; flex-wrap:wrap; gap:5px; }
+.haze-scope-totals { display:flex; flex-wrap:wrap; gap:16px 44px; padding-top:8px; font-size:13px; }
+.haze-scope-totals>div { display:flex; flex-wrap:wrap; gap:8px; }
+.haze-scope-totals span { color:var(--secondary); }
+.haze-scope-tag { color:var(--accent); border:1px solid var(--border); border-radius:5px; padding:3px 7px; }
 .haze-mini-dot { width:6px; height:6px; border-radius:50%; display:inline-block; margin-left:6px; }
 .haze-mini-dot:first-child { margin-left:0; }
 .haze-mini-dot.negative { background:var(--negative); }.haze-mini-dot.positive { background:var(--positive); }.haze-mini-dot.mixed { background:var(--chart-8); }

@@ -3,6 +3,7 @@ const CSV_FIELDS = [
   'date', 'sentiment', 'theme', 'evidence', 'source', 'community', 'collectionChannel', 'location',
   'textType', 'summary', 'url', 'threadUrl', 'dateBasis', 'publishedAt', 'note', 'id', 'coding',
   'channel', 'contentType', 'retrievedAt',
+  'feedbackScope', 'scopeBasis',
 ];
 
 export function summarize(rows) {
@@ -43,6 +44,15 @@ export function topicCounts(rows) {
       total: group.Positive + group['Neutral / mixed'] + group.Negative,
     }))
     .sort((a, b) => b.total - a.total || a.theme.localeCompare(b.theme));
+}
+
+export function scopeCounts(rows) {
+  return ['Vending machines', 'Wider rollout'].map(feedbackScope => {
+    const selected = rows.filter(row => row.feedbackScope === feedbackScope);
+    const stats = summarize(selected);
+    return { feedbackScope, Positive: stats.positive, 'Neutral / mixed': stats.mixed,
+      Negative: stats.negative, total: stats.total, negativeShare: stats.negativeShare };
+  });
 }
 
 function csvCell(value) {
