@@ -1,3 +1,284 @@
+# Tracker refresh — 18 October 2026
+
+The reviewed dashboard contains **194 selected public posts/comments from 8 contributing platforms and 29 discussions**. This refresh adds **54 newly captured mentions** to the prior 140-record snapshot, combining new feedback with rechecks of earlier discussions. Newly captured records are not all newly posted.
+
+There are **31 vending-machine mentions** and **163 wider-rollout mentions**, in mutually exclusive groups. 104 records are from social media. 100 records have no verified exact calendar date and remain in sentiment totals while being excluded from the daily chart. Verified calendar dates span 2026-10-09 to 2026-10-18.
+
+The scope remains the government haze-mask rollout: explicit machine access, location, interface and use are separated from eligibility, allocation, mask usability and other collection feedback. Official announcements, publisher captions, copied news, quoted repeats, generic haze/political comments and unrelated COVID-era programmes are excluded from sentiment. Self-reported collection experiences are not independently verified incidents.
+
+## Current snapshot by platform
+
+| Platform | Selected mentions | Vending machines | Wider rollout | Added this refresh |
+|---|---:|---:|---:|---:|
+| Reddit | 48 | 12 | 36 | 10 |
+| HardwareZone | 33 | 6 | 27 | 10 |
+| MyCarForum | 5 | 0 | 5 | 0 |
+| Sammyboy | 4 | 1 | 3 | 0 |
+| Facebook | 24 | 1 | 23 | 12 |
+| Instagram | 3 | 1 | 2 | 0 |
+| YouTube | 21 | 2 | 19 | 4 |
+| TikTok | 56 | 8 | 48 | 18 |
+
+**Coverage limits:** 19 platforms have been searched across the combined passes; eight contribute feedback. The per-platform logs distinguish fresh reviews from historical access observations. Ranked subsets, collapsed replies and login restrictions prevent exhaustive collection. This is a reviewed snapshot, not continuous monitoring or a representative survey. A zero captured count is not proof of no discussion.
+
+## Latest review logs
+
+# Forum refresh — 18 October 2026
+
+Research window: approximately 08:23–08:33 UTC (16:23–16:33 Singapore time). Baseline: 140 saved dashboard rows, previous collection cutoff 17 October 06:36 UTC. This pass prioritised newer posts and revisited selected threads; it is not exhaustive monitoring.
+
+## Final additions
+
+`work/refresh-20261018-forums-feedback.json` contains **20 new records**: Reddit 10 and HardwareZone 10. Two explicitly discuss vending machines; 18 concern the wider government rollout. Fifteen are dated 18 October, three 17 October and two 15 October. The two older records were newly discovered in a separate SingaporeRaw queue thread and must not be represented as newly posted today.
+
+All 20 have directly observed HTML timestamps, converted to Singapore calendar dates, durable comment/post URLs, scope rationale and retrieval date. IDs, source URLs and summary text were compared with all 140 baseline records; no duplicates found. Different comments do not imply different people or independent incidents.
+
+There is **one new firsthand collection report**, at NEX. The comment does not explicitly identify a machine, so it is Wider rollout with collectionChannel `Unspecified`. A separate account of wearing a government-issued mask is labelled `Personal use report`; it must not increase a collection-attempt KPI. Neither report is independently corroborated.
+
+The two machine records are policy reactions: one favours staffed counters in areas with many seniors; the other criticises machines as part of an inadequate response. Neither asserts a new machine failure or completed machine redemption.
+
+## Platforms actually rechecked today
+
+| Platform | What was checked | Result and limit |
+|---|---|---|
+| Reddit | Web discovery; public browser review of SingaporeRaw AMK queue thread, AskSG collection thread and today's SingaporeSpeaks discussion; indexed allocation/retail/daily-thread text | 10 additions. Browser comment trees and indexed search are incomplete; no platform-wide completeness claim. |
+| HardwareZone | Public HTML pages 540–578 of the consolidated haze discussion, following observed pagination to page 578 | 759 distinct posts retrieved; ten additions. Original text screened with keywords and surrounding context; not every full post manually read. |
+| MyCarForum | Public HTML pages 64–67 of the established haze thread, following observed pagination to page 67 | 57 original posts reviewed; no qualifying additions. |
+| Sammyboy | Public browser revisits of the standalone machine satire thread and page 3/end of the mask-task-force thread | No new replies. Still one original satire post and one final page-3 post respectively. |
+| SGtalk | Domain-constrained searches only | No current qualifying primary feedback verified. Do not describe this as a direct forum crawl. |
+
+SGClub, Singapore Expats and KiasuParents were not rechecked in this forum subtask. A separate root search-only follow-up is recorded in the other-platform log below; it does not imply a fresh direct page review.
+
+## Thread/page coverage and selection
+
+### Reddit
+
+- [SingaporeRaw AMK queue thread](https://www.reddit.com/r/SingaporeRaw/comments/1x6f69r/long_queues_in_amk_for_free_n95_masks/): 16 rendered article nodes read, including an empty comment. Added the fresh 18 October machine-design reaction plus two previously missed 15 October reactions. Excluded political insults, attacks on seniors and generic mask-use speculation. This is a different thread from the existing SingaporeSpeaks AMK thread; source IDs and texts were deduplicated.
+- [SingaporeSpeaks: fair? what's your take](https://www.reddit.com/r/singaporespeaks/comments/1x8ttmd/fair_whats_your_take/): read initial rendered comments, then used the site's visible comment search for `vending` and `mask`. Ten mask-search matches were visible; seven relevant original reactions retained. Excluded general personal-protection advice, ambiguous retail-stock criticism and a purely factual correction attacking another commenter. The machine-specific result was opened/read with its exact timestamp and durable link. Search results and rendered nodes overlap; counts are not summed as unique comments.
+- [AskSG: Have you collected your N95?](https://www.reddit.com/r/asksg/comments/1x78e70/have_you_collected_your_n95/): 25 rendered article nodes reviewed, including deleted/empty content. Existing qualifying records matched the baseline; the newly visible 17 October reply concerned retail shipping and was excluded.
+- [Retail purchase-limits thread](https://www.reddit.com/r/singapore/comments/1x87oax/haze_in_singapore_retailers_impose_purchase/): read indexed comments and located the machine reference. Its direct machine wording quoted the parent caption; the author's additional text discussed general retail shortages. No new machine record inferred from a quotation. News/caption text and retail-only comments were not added.
+- [18 October daily discussion](https://www.reddit.com/r/singapore/comments/1x8mgmp/rsingapore_random_discussion_and_small_questions/): searched/read indexed mask matches; none verified as rollout feedback. No claim that the current entire daily thread was read.
+- [Existing two-mask allocation thread](https://www.reddit.com/r/singapore/comments/1x6bl8s/ysk_govt_is_giving_out_just_two_one_time_use/): revisited indexed material; known volunteer and allocation comments duplicated existing evidence. The cached page retained old relative timestamps and therefore was not treated as a fresh complete snapshot.
+
+### HardwareZone
+
+[Consolidated haze thread](https://forums.hardwarezone.com.sg/threads/consolidated-el-nino-and-haze-discussions.6117454/): pages 540–578 exposed 759 unique post IDs, spanning 17 October 11:49:09 through 18 October 15:54:08 SGT. Starting page 540 deliberately overlaps earlier coverage because live pagination can shift. Baseline IDs and source URLs, rather than page numbers alone, control deduplication.
+
+The initial original-text filter (`vending|collect|chas|eligible|distribution|give…mask|2 masks|two masks`) found ten candidates. A broader `mask|respirator` screen found 72 additional posts; a quoted reply led back to one further original allocation question. Selected originals were checked against full saved text and timestamps; quoted parent text was excluded. Retail reports, old personal stock, generic symptoms, scientific/medical claims, copied news and general politics were excluded. One apparent approving comment is labelled Neutral / mixed because irony cannot be resolved.
+
+Files: `work/refresh-20261018-hwz-scan.json`, `work/refresh-20261018-hwz-candidates.json`, and public HTML in `work/refresh-20261018-hwz-pages/`. These research caches contain unselected public text and should not be published wholesale.
+
+The ten new HWZ summary/note fields total **61 words**. Existing summaries/notes total 198 words for this source thread. Existing wording was condensed during integration, with source links and classifications preserved; the combined summary/note fields remain within 200 words. Scope/provenance labels do not imply new source statements.
+
+### MyCarForum and Sammyboy
+
+[MyCarForum haze thread](https://www.mycarforum.com/forums/topic/2719412-haze-updates-2021-23-trilogy-and-beyond/): read pages 64–67, 57 posts, from 17 October 12:26 to 18 October 13:27 SGT. Text concerns general haze, visibility, air purifiers, politics and informal jokes. A passing CHAS reference does not clearly evaluate mask collection; not retained. Quoted blocks removed before screening. Cache: `work/refresh-20261018-mcf-scan.json` and `work/refresh-mcf-64.html` through `67.html`.
+
+[Sammyboy machine commentary](https://www.sammyboy.com/threads/free-n95-masks-two-per-person-website-say-got-stock-machine-say-no-plug.435513/): still exactly one visible original post, `4534879`, timestamp 16 October 04:27:29 +0800, already retained. [Task-force thread page 3](https://www.sammyboy.com/threads/haze-task-force-n95-masks-will-be-distributed-to-vulnerable-singaporeans-when-psi-hits-unhealthy-range.435131/page-3): still one post, `4533120`, 12 October 12:54:23 +0800; off-topic medical/conspiracy discussion excluded. Pagination ended at page 3.
+
+## Exact search queries issued
+
+1. `site:reddit.com/r/singapore haze mask collect vending "October 18 2026"`
+2. `site:reddit.com "N95" "October 17 2026"`
+3. `site:forums.hardwarezone.com.sg "mask" "vending" "2026"`
+4. `site:mycarforum.com "N95" "2026"`
+5. `site:reddit.com "mask vending" "October 18 2026"`
+6. `site:reddit.com "collect" "N95" "October 18 2026"`
+7. `site:sammyboy.com "haze" "mask" "2026"`
+8. `site:sgtalk.net "N95" "2026"`
+9. `Singapore haze mask vending collect free reddit` (recency: two days)
+10. `site:reddit.com/r/asksg "N95" "collected"`
+11. `site:reddit.com "haze" "vending machine" "2026"`
+12. `site:reddit.com Singapore "free masks" after:2026-10-16`
+13. `site:forums.hardwarezone.com.sg "vending" "haze" after:2026-10-16`
+14. `site:sgtalk.net "haze" "masks" "October"`
+15. `site:sammyboy.com "N95" "Oct 18, 2026"`
+16. `site:reddit.com "vending machine" haze mask collected` (recency: two days)
+17. `site:reddit.com "haze" "machine" "not eligible"` (recency: two days)
+18. `site:reddit.com "mask" "collected" "NEX"` (recency: two days)
+19. `site:reddit.com/r/singapore "random discussion" "October 17, 2026" mask`
+
+Additional within-page searches: `mask` in the 18 October daily thread; `vending` in the retail thread; visible Reddit comment-search UI for `vending` and `mask` in today's SingaporeSpeaks discussion. Search results sometimes ignored specificity and returned unrelated countries, historical/COVID threads, retail material or general haze opinions; these were excluded.
+
+## Access and interpretation limits
+
+Several web opens returned cache misses. MyCarForum's browser navigation remained blank; ordinary public HTML retrieval succeeded with normal HTTP 200 responses. Sammyboy command-line requests returned HTTP 403; a normal browser page loaded after its automatic interstitial, without login, solving a CAPTCHA or bypassing access controls. No private content was accessed.
+
+All selected text is concise paraphrase. Sentiment is an analyst label, not an author rating. Claims about expiry, eligibility, collection, stock and mask effects are unverified accounts; they are not official instructions. Individual record dates are not the same as retrieval dates. Search indexing, deleted or collapsed comments, sorting, pagination changes and platform availability limit reproducibility. No qualifying results on a platform means none verified in this bounded pass, not that none exist. The dataset remains a nonrepresentative public-feedback snapshot rather than live monitoring.
+
+
+---
+
+# Facebook and Instagram refresh — 18 October 2026
+
+Research window: 2026-10-18 08:23:50–08:35:55 UTC (16:23:50–16:35:55 SGT). This is a bounded public-web review, not an exhaustive platform crawl. Final files were prepared immediately afterward.
+
+## Result
+
+12 new verified Facebook comment records, no new Instagram records. Facebook additions comprise four comments on a previously unrepresented Lee Hsien Loong mask-collection post and eight missed comments/replies on the existing Dinesh Vasu Dash distribution post. Eight negative, one positive, three neutral / mixed. One explicitly praises vending machines; eleven concern the wider rollout. One is a firsthand attempted-collection report, but its collection channel and location are unspecified. All dates are null because the browser exposed only relative ages. Eleven display 3d and one displays 1d. None can be asserted to have been published after the baseline cutoff of 2026-10-17T06:36:23Z.
+
+The scope split follows comment content. Requests for broader eligibility or closer collection remain wider rollout even under a parent discussing vending machines. Official/publisher captions and generic politician praise are not sentiment observations.
+
+## Exact web searches
+
+Eight queries, in two four-query web-search calls:
+
+1. `site:facebook.com "N95" "haze" "October 18" "2026"`
+2. `site:instagram.com "masks" "haze" "October 17" "2026"`
+3. `site:facebook.com "mask" "vending" "haze" "2026"`
+4. `site:instagram.com "N95" "vending" "2026"`
+5. `Singapore haze mask collection October 18 2026 Facebook Instagram comments`
+6. `Singapore N95 masks vending October 17 2026 Facebook complaints`
+7. `"haze" "masks" "Facebook" "October 17"`
+8. `"N95" "2026" "instagram.com/p"`
+
+The first pooled response returned no results. The second returned news, Reddit and unrelated/older material rather than directly verifiable Meta user comments. News was used for discovery only. No search snippet became a sentiment record.
+
+Discovery pages opened:
+
+- https://www.asiaone.com/singapore/sm-lee-collects-n95-masks-advise-stay-indoors — contained an embedded Facebook link to the Lee Hsien Loong post. The web-tool iframe fetch failed; the ordinary browser exposed its public post and comments.
+- https://theindependent.sg/singaporeans-urge-pm-wong-to-do-more-after-he-announces-probe-into-companies-behind-haze — described social responses, but no secondhand quoted feedback was added.
+- https://theindependent.sg/free-n95-masks-for-vulnerable-individuals-to-mitigate-haze-s-negative-health-effects-in-singapore — official/news context only; excluded.
+- https://go.gov.sg/1fg0nd — web-tool fetch unavailable; normal browser redirect led to the Teck Ghee public post listed below.
+
+## Facebook browser bounds
+
+1. Lee Hsien Loong entry URL: https://www.facebook.com/leehsienloong/posts/pfbid02yPVcf1pjjx8uYeggkZzbUcrXC7gMobnzX7mhG2wqscVvFBLQjiPMjpq8aJ8atmtGl . Dismissed the ordinary optional login invitation with Close. Reviewed 30 visible top-level comments under Most relevant after two successful View more comments expansions. A third expansion produced a login invitation and yielded no additional reviewed comments; stopped. Four mask-specific comments were selected. Exclusions were school/air-purifier/general haze discussion, generic greetings/political praise, image-only content, and generic mask-wearing advice without a rollout evaluation. The four records use the observed comment anchor parent https://www.facebook.com/leehsienloong/posts/pfbid0ufhRShve59317KERwaeqH37Lgi2g3eEf1VqMKGqvGUzhzGHeWoe5pMVnCuY9pULpl . Neither the displayed 306 comment badge nor 251 pagination figure is a reviewed count.
+
+2. https://www.facebook.com/NEASingapore — six feed entries became visible: 17 October haze update; shared gov.sg measures; mask/air-purifier availability; haze outlook video; 16 October haze update; fortnightly weather outlook. Four displayed user comments across these feed entries were unrelated to mask distribution and excluded. Expanded the availability caption. Its nine-comment badge was clicked once; a non-dismissible login requirement replaced the public view. No availability-post comments were read and no alternative route was attempted to get them.
+
+3. https://www.facebook.com/gov.sg/posts/pfbid0fZVhUKT8j1o1xkqUKM3RzqEU5cKDAff8fQNxPR4JsaDZAmFyJc2eNQZcivcjBpRbl — separately linked from NEA's shared post. Public parent caption and photos were visible after optional invitation dismissal; no comment text was exposed. This is an access observation, not proof that the post has zero comments.
+
+4. Existing Dinesh entry: https://www.facebook.com/dinesh.vasudash/posts/pfbid02cuiyqZgnx8g25N8utPTJSzz5YTEz9Uoay7mVBxxTH3TMsH2FgP5X2wmUU8uLHvS4l . Reviewed 20 top-level comments under Most relevant after one View more comments expansion, plus five replies across three expanded branches. Eight newly retained comments/replies; existing baseline records excluded by native IDs. The parent rendering now exposes alias https://www.facebook.com/dinesh.vasudash/posts/pfbid02cZQyFH9KK4yUjzWYbPc2a3PAow8PihtKKKxNcrGyTTamtH85FeJMrdoeC1eHQQ7cl . New record url preserves that observed alias and exact comment_id/reply_comment_id. threadUrl retains the baseline canonical parent https://www.facebook.com/dinesh.vasudash/posts/pfbid0ZBvndFnhHV3W1EvXrXR51ujnJLQxzSDaWnQG7AbiXRBuhj42LS1jB48R63haB7pxl so aliases cannot inflate discussion counts. No time elements were exposed in the rendered discussion DOM; dates remain unknown. The 40-comment badge and 28 pagination denominator are not reviewed counts.
+
+5. https://www.facebook.com/teckgheedivision/posts/pfbid02raNWEXZ34PhTiVoSHTNEKTbdewyVjydw7mAGMJnFde1PPt55fyUHvHbNntZqVuD2l — reached through the official short link in Lee's post. Public respite-centre announcement with two displayed comments: one generic community statement and one GIF. Neither is mask feedback; excluded.
+
+Facebook total actually inspected: 61 user comment/reply objects across the above surfaces (30 + 25 + 4 + 2). These are visible review bounds, not platform totals or unique-user counts.
+
+## Instagram browser bounds
+
+Five post discussions exposed 33 comment objects in total; three are already in the baseline, and the other 30 were ineligible. No Load more comments or signup barrier was bypassed.
+
+- https://www.instagram.com/gov.sg/p/DeinTiNE0nq/ — two visible comments, both already captured (Toa Payoh collection/expiry concern and reuse question). No additions.
+- https://www.instagram.com/gov.sg/p/DellrkykgAC/ — seven visible comments on the newer government haze update; school closures, classroom conditions and enforcement, not mask distribution. Excluded.
+- https://www.instagram.com/nea_sg/p/DeRaSO2GjGh/ — eight visible comments; the eligible mask-timing comment already exists, seven general haze comments excluded.
+- https://www.instagram.com/mothershipsg/p/Den1JrDxol1/ — fifteen displayed comment objects (fourteen text and one image-only) on the newer haze update. None discussed mask rollout. The grid's post date and edited caption/relative times were not used to infer any comment date.
+- https://www.instagram.com/govtechsg/p/DegXy6HgXAE/ — one visible comment appealing for help in Kalimantan, unchanged and outside rollout scope. Excluded.
+
+Four public profile grids were also checked: https://www.instagram.com/nea_sg/ , https://www.instagram.com/mothershipsg/ , https://www.instagram.com/channelnewsasia/ , https://www.instagram.com/lawrencewongst/ . Each exposed twelve post links (48 grid entries reviewed for relevance, not necessarily unique or current-day posts). Mothership's relevant newer haze update was opened as above. CNA's displayed recent thumbnails did not identify another mask-distribution post. Lawrence Wong's grid was loaded at the end; no further posts were opened once the bounded pass was closed. Official grid captions do not count as user sentiment.
+
+## Separate official update — not sentiment
+
+Primary URL: https://www.facebook.com/NEASingapore/posts/pfbid02NE77uLTkivASBqDeiqF8feJi7pAERfx6KbuQvBfhjJB2kqi1kRrCkiUeEET6zsrVl
+
+The public caption says eligible Singaporeans can collect N95 masks at 37 vending machines and 118 community clubs, and around 14% have already collected. It also says national mask stocks are sufficient and retailers are replenishing shelves. This supports NEA's statement of collection availability; it does not literally establish that every machine was operating when inspected. Publication date remains unknown: only a day ago was visible. Browser review occurred within 2026-10-18T08:28:00Z–2026-10-18T08:29:54Z; audit recorded at 2026-10-18T08:34:08Z. Keep the unknown publication date distinct from this exact review/audit timestamp. Comments were login-blocked, as recorded above.
+
+## Integrity and limitations
+
+- New records checked against all 140 baseline IDs, native comment/reply IDs extracted from permalinks, and normalized summary text: no overlap. New IDs are unique.
+- Dinesh combined baseline + additions: 20 records, 185 summary/note words (136 baseline + 49 new), below the 200-word per-thread summary budget. Lee thread: four records, 41 summary/note words. No direct quotations were saved. A generic top-level mask-reuse advice comment was reviewed but excluded because it did not explicitly identify the distributed masks or reply to a rollout-specific exchange.
+- Commenter names/profile URLs/raw text are not retained in the output records. Stable comment identifiers and public source permalinks provide traceability.
+- Most relevant sorting and logged-out visibility are selection limits. Relative times cannot prove a new comment was published after the prior snapshot; the single 1d reply is retained as undated, not assigned 17 October.
+- No login, account creation, posting, reacting, CAPTCHA handling, hidden-state extraction or access bypass was performed. Ordinary dismissible invitations were closed. Non-dismissible requirements ended that surface's review.
+- No Instagram additions means none newly verified within these visible bounds, not no Instagram discussion. User comments, authors and platform-wide opinion totals remain unknown outside the reviewed subset.
+
+
+---
+
+# YouTube and TikTok refresh — 18 October 2026
+
+Reviewed approximately 16:23–16:31 Singapore time on 18 October 2026. Baseline: 140 dashboard records generated 17 October at 06:36 UTC. The baseline JSON and the preceding video-source audit were read before research. No dashboard files were edited.
+
+This bounded pass adds **22 records**: four YouTube comments, seventeen TikTok comments and one TikTok creator post. Thirteen additions come from two newly found videos; nine are newly captured comments on three previously reviewed videos. These are newly captured records, not a claim that every comment was newly published after the baseline. Three machine-video additions display 2d or 3d ago and are explicitly older backfill.
+
+## Reviewed scope
+
+| Primary source | What was read | New records |
+|---|---|---:|
+| [CNA collection-uptake update](https://www.youtube.com/watch?v=xt9z_PkZV1c) | New search result displayed 17h ago. Interface showed 16 comments. Read 13 top-level comments in Top order, then 15 in Newest order, with substantial overlap. Replies not expanded. Retained comments displayed 8h and 16h ago. | 3 |
+| [CNA earlier mask distribution](https://www.youtube.com/watch?v=8-3auyIUboU) | Existing source rechecked. Interface showed 26 comments. Read 18 loaded Top comments and 20 loaded Newest comments, overlapping. Retained one eligibility observation labelled 1 day ago. Replies not expanded. | 1 |
+| [Al-Kisah mask-expiry discussion](https://www.tiktok.com/@alkisahproductions/video/7697820202419146002) | Newly found creator post displayed 6h ago; interface showed 67 comments. Read the initial 20 top-level comments and 17 more loaded by ordinary scrolling. Retained creator caption plus nine substantive reactions/questions. Replies not expanded. | 10 |
+| [AsiaOne October 16 collection video](https://www.tiktok.com/@asiaone/video/7697158507488972053) | Existing source rechecked; interface showed 46 comments. Read 18 loaded top-level comments. Retained three previously uncaptured comments labelled 4h, 7h and 20h ago. The three existing baseline comments were recognized and excluded. | 3 |
+| [Runner Kao machine video](https://www.tiktok.com/@runnerkao/video/7696712095622008070) | Existing source rechecked; interface showed 122 comments, compared with 118 on the earlier review. Read 40 top-level comments through ordinary scrolling. Retained five; two display 16h/1d ago and three display 2d/3d ago. Replies not expanded. | 5 |
+| [CNA mask-supply statement](https://www.youtube.com/watch?v=rMCOT_UVc14) | Newly found search result displayed 1d ago. Interface showed 27 comments; read 13 loaded Top comments. General haze-policy arguments, retail stock complaints, COVID comparisons and unrelated political discussion were not imported. | 0 |
+
+Displayed platform totals include material not read in this pass and may include replies. They are not totals of fully inspected comments. Public ranking, loaded batches, unexpanded replies, scope exclusions and selective retention limit coverage. This is neither an exhaustive search nor a representative sentiment sample.
+
+## Discovery and access log
+
+- YouTube search: `singapore haze n95 vending 2026`, at https://www.youtube.com/results?search_query=singapore+haze+n95+vending+2026 . Read the displayed result set and opened the strongest recent programme updates, plus the previously recorded early-distribution source.
+- TikTok search: `singapore haze N95 vending`, at https://www.tiktok.com/search?q=singapore%20haze%20N95%20vending . The first public page showed a server error. One normal **Try again** action rendered the public search results. Opened the new Al-Kisah result and rechecked the known AsiaOne and Runner Kao URLs.
+- Search-result cards for unrelated general haze, mask-use advice, promotional guides and official announcements were not counted as sentiment. The TikTok search AI summary was not treated as evidence.
+- Normal public pages and comment panels worked. Brief loading states resolved normally. No login, CAPTCHA, hidden state, private endpoint, source-code extraction or access bypass was used. No likes, comments, subscriptions or follows were submitted. YouTube ads were ignored.
+- The previously blocked web-fetch route for TikTok was not retried. The old CNA TikTok readiness thread, already at 168 paraphrase words, received no additions in this pass.
+
+## Scope and evidence checks
+
+Twenty-one additions are `Wider rollout`; one is `Vending machines`. A machine-themed parent video does not turn general eligibility, allocation or mask-fit comments into machine-specific feedback. The one machine addition describes an automated scan-and-dispense sequence and praises its speed. It is a discussion reaction, not a firsthand report: the commenter does not explicitly state a personal attempt. Another commenter explicitly says they collected masks, but gives no mechanism or location; that row is a firsthand report with `Unspecified` collection channel and wider-rollout scope. These remain unverified claims.
+
+The new creator post's visible video frame shows an AsiaOne article about government-distributed N95 masks and questions about their December 2026 expiry. Its caption urges gratitude; this supports the rollout context for the expiry reactions. The creator row is based on the caption and visible context, not a full audio transcription. Comments that defend immediate use are opinions, not verified safety advice. A generic dislike of N95 use was removed because it did not expressly concern the distributed masks or rollout. Short approval-only comments, emoji-only comments and image-only comments were excluded.
+
+Labels: six Positive, six Negative and ten Neutral / mixed. One firsthand report is added. The analyst labels concern the programme or distributed masks; they are not operational failure rates or a survey of recipients.
+
+## Dates, deduplication and source budgets
+
+All 22 dates remain null. Each row preserves the exact visible relative-date label, retrieval date and source link. No relative timestamp was converted to a calendar date. A 1d or 2d label does not establish whether a comment falls on either side of the earlier snapshot cutoff.
+
+All 140 baseline IDs, source links and summaries were checked. YouTube rows use verified native comment IDs and `lc` permalinks. TikTok's present public layout exposed no native comment ID or permalink, so comment rows use the established deterministic research ID: SHA-256 prefix of parent URL, newline and lowercase, whitespace-normalized visible text. The IDs are explicitly research identifiers; the source URL is the parent video. The creator row uses its native video ID. No commenter names or raw comment bodies are stored in the addition file.
+
+A recent allocation complaint on the new CNA update reproduced an existing comment verbatim by the same visible author on the older CNA video. It was excluded despite its distinct native ID (`Ugw5TMpRb91uhS8UQgl4AaABAg`; existing `Ugy2a3UvFwY9lSmYzF94AaABAg`). Repeated continuation posts by the same author within the new update were also excluded. Earlier TikTok queue, delivery, child-collection and retrieval-door records were recognized and not duplicated.
+
+Combined baseline-plus-addition summary and note word counts: new CNA uptake video **39**; older CNA distribution video **59**; Al-Kisah **94**; AsiaOne collection video **98**; Runner Kao **123**. All remain below 200 words per source. No direct comment quotations are reproduced. Date/source provenance and scope labels do not restate full source narratives.
+
+The addition file contains 22 unique IDs, zero baseline-ID overlap, valid sentiment/scope labels, and no exact dates inferred from relative text. It is ready for integration with the preserved baseline.
+
+
+---
+
+# Other social platforms and context check — 18 October 2026
+
+Twenty web discovery queries were run during this refresh, including English and Chinese wording. They did not verify any additional original, current-rollout public feedback on X, Threads, Lemon8, Xiaohongshu or Bluesky. Search results included older mask tips, unrelated profiles, retail listings and publisher/official material; these were not added as sentiment. A zero here is a coverage gap, not a finding that no discussion exists.
+
+## Exact queries
+
+1. `Singapore haze mask vending 18 October 2026 site:x.com`
+2. `Singapore haze N95 collection October 2026 site:threads.com`
+3. `新加坡 烟霾 免费口罩 10月18日 2026`
+4. `haze mask vending distribution October 18 2026 site:nea.gov.sg`
+5. `Singapore mask vending October 2026 site:lemon8-app.com`
+6. `新加坡 N95 口罩 2026 site:xiaohongshu.com`
+7. `Singapore haze mask collection October 2026 site:bsky.app`
+8. `Singapore N95 masks 14 per cent October 17 2026 NEA`
+9. `site.nea.gov.sg "17 October 2026" "masks"`
+10. `site.facebook.com/NEASingapore "14%" "masks"`
+11. `site.channelnewsasia.com "14%" "masks" "2026"`
+12. `site.x.com "haze" "vending" "2026"`
+13. `"14 per cent" "masks" "October" "2026" "NEA"`
+14. `site.nea.gov.sg "17 October" "37" "2026"`
+15. `site.threads.com "N95" "Singapore" "October 2026"`
+
+16. `site.sgforums.com Singapore haze N95 mask collection 2026`
+17. `site.forum.kiasuparents.com haze N95 mask collection October 2026`
+18. `site.forums.sgclub.com haze mask vending 2026`
+19. `site.singaporeexpats.com/forum haze N95 mask government collection 2026`
+20. `Singapore government N95 free mask collection haze October 2026` with domain filter `tripadvisor.com`
+
+## Review boundaries
+
+- Additional targeted searches for SGForums, KiasuParents, SGClub, Singapore Expats and Tripadvisor verified no eligible original rollout feedback. Some query results fell outside the requested site and were treated only as incidental leads; no forum-wide review is claimed. Their older page-access outcomes remain historical. Tripadvisor again returned the already known air-quality travel thread with three indexed replies; these remained outside government-rollout scope.
+- This pass used indexed discovery for these five social platforms. Their native search pages were not rechecked on 18 October. Login limitations documented on 17 October remain historical observations, not a new access test.
+- A Reddit retailer-limit discussion was sent to the forum review for inspection of original audience comments: https://www.reddit.com/r/singapore/comments/1x87oax/haze_in_singapore_retailers_impose_purchase/. Its news text was excluded.
+- [BERITA Mediacorp's collection update](https://berita.mediacorp.sg/singapura/jerebu-rentas-sempadan-14-rakyat-sg-yang-layak-sudah-dapatkan-agihan-pelitup-n95-nea-1079206) was opened as contextual reporting. It attributes a 14% collection figure and all 37 machines operating to NEA on 17 October. This publisher report is not sentiment and was not substituted for a directly verified official announcement.
+- An attempted open of `https://www.nea.gov.sg/media/news/advisories/index/haze-situation-update-17-october-2026` failed. The URL was a discovery attempt, not a verified document. The Meta review separately verified an original NEA Facebook collection update; see its log. That statement is included as undated official context reviewed on 18 October, without inferring a calendar date from its relative timestamp or claiming live operational telemetry.
+- No login, account creation, posting, reactions or access-control bypass was attempted in this pass.
+
+
+---
+
+# Historical snapshot and review logs — through 17 October
+
+The following counts and access results describe previous passes. Current totals and fresh review bounds are above.
+
 # Expanded scan — 17 October 2026
 
 The dashboard now contains **140 distinct selected public posts/comments from 8 contributing platforms and 24 discussions**, an increase of **74** over the prior 66-mention snapshot. There are **27 machine-specific mentions** and **113 wider-rollout mentions**; each record belongs to exactly one group. There are 70 social-media mentions. 66 records have no verified exact calendar date and are excluded only from the daily chart.

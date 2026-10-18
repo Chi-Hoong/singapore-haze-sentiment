@@ -2,9 +2,9 @@
 
 [Open the dashboard](https://chi-hoong.github.io/singapore-haze-sentiment/)
 
-A public-source dashboard for Singapore’s October 2026 government N95 vending and mask-collection rollout. The reviewed snapshot contains **140 posts and comments from eight platforms**, including 70 social-media records. The expanded scan added 74 mentions. See [SEARCH_COVERAGE.md](SEARCH_COVERAGE.md) for sources, search depth and access limits.
+A public-source dashboard for Singapore’s October 2026 government N95 vending and mask-collection rollout. The reviewed snapshot contains **194 posts and comments from eight platforms**, including 104 social-media records. The 18 October refresh added 54 newly captured mentions after reviewing new feedback and earlier discussions. See [SEARCH_COVERAGE.md](SEARCH_COVERAGE.md) for sources, search depth and access limits.
 
-Filter by feedback focus, channel, platform, posted date, evidence, sentiment or topic. A comparison separates **27 machine-specific mentions** from **113 wider-rollout mentions**. Each record has a scope explanation, source link and CSV export fields. The daily chart excludes 66 records without exact dates. Creator opinions, firsthand collections, firsthand observations and secondhand reports are distinguished.
+Filter by feedback focus, channel, platform, posted date, evidence, sentiment or topic. A comparison separates **31 machine-specific mentions** from **163 wider-rollout mentions**. Each record has a scope explanation, source link and CSV export fields. The daily chart excludes 100 records without exact dates. Creator opinions, firsthand collections, firsthand observations and secondhand reports are distinguished.
 
 This is a reviewed snapshot, not continuous social listening. Labels are AI-assisted; the sample is not representative. Public comments do not independently verify stock, outages or eligibility failures. Browser-local layout changes do not update the public data; data updates require a rebuilt deployment.
 
